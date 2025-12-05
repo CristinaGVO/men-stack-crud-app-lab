@@ -13,12 +13,13 @@ app.use(express.urlencoded({ extended: false }));
 // importando el modelo de clothe para crear, leer,actualizar y eliminar
 
 const Clothe = require('./models/clothes.js');
+app.use(express.urlencoded({ extended: false }));
+
 
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
     console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
-
 
 
 //conection de string
@@ -34,9 +35,29 @@ app.get("/", async (req, res) => {
 
 // server.js
 
-// GET /fruits/new
+// GET 
+
+app.get("/clothes", async (req, res) => {
+    const allClothes = await Clothe.find();
+    res.render("clothes/index.ejs", { clothes: allClothes });
+  });
+  
+
+//new clothes
 app.get("/clothes/new", (req, res) => {
   res.render("clothes/new.ejs");
+});
+
+// POST /clothes
+app.post("/clothes", async (req, res) => {
+  console.log(req.body);
+  if (req.body.inStock === "on") {
+    req.body.inStock = true;
+} else {
+    req.body.inStock = false;
+}
+await Clothe.create(req.body);
+res.redirect("/clothes/new");
 });
 
 
