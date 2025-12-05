@@ -1,0 +1,41 @@
+<!-- views/clothes/new.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create a Clothes</title>
+  </head>
+  <body>
+    <h1>Create a New Clothes!</h1>
+    <form action="/clothes" method="POST">
+
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" required />
+  
+      <label for="category">Category:</label>
+      <input type="text" name="category" id="category" required />
+
+      <label for="size">Size:</label>
+      <input type="text" name="size" id="size" required />
+
+      <label for="color">Color:</label>
+      <input type="text" name="color" id="color" />
+
+      <label for="price">Price:</label>
+      <input type="number" name="price" id="price" required/>
+
+      <label for="inStock">InStock:</label>
+      <input type="checkbox" name="inStock" id="inStock" checked />
+
+      <label for="image">Image URL:</label>
+      <input type="text" name="image" id="image" />
+
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" ></textarea>
+      
+      <button type="submit">Add Clothe</button>
+    </form>
+  </body>
+</html>
