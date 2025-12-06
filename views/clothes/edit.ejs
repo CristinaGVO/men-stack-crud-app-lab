@@ -1,5 +1,3 @@
-<!-- views/clothes/new.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,12 +6,12 @@
     <title>Create a Clothing</title>
   </head>
   <body>
-    <h1>Create a New Item!</h1>
-    <form action="/clothes" method="POST">
-        <a href="/clothes/">Back to Clothing</a>
+    <h1>Edit <%= clothe.name %></h1>
+
+    <form action="/clothes/<%=clothe._id%>?_method=PUT" method="POST">
 
       <label for="name">Name of Item:</label>
-      <input type="text" name="name" id="name" required />
+      <input type="text" name="name" value="<%= clothe.name %>" />
 
       <label for="size">Size:</label>
       <input type="text" name="size" id="size" required />
@@ -22,9 +20,10 @@
       <input type="text" name="color" id="color" />
 
       <label for="inStock">InStock:</label>
-      <input type="checkbox" name="inStock" id="inStock" checked />
+      <input type="checkbox" name="inStock" <% if (clothe.inStock) { %>checked<% } %> >
 
-      <button type="submit">Add Clothing</button>
+      <button type="submit">Update Clothing</button>
     </form>
+    <a href="/clothes/">Back to Clothing</a>
   </body>
 </html>

@@ -5,13 +5,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clothes Index</title>
+    <title>Clothing Index</title>
   </head>
   <body>
-    <h1>All Clothes</h1>
+    <h1>All Clothing</h1>
+        <a href="/clothes/new">Add new item</a>
     <ul>
         <% clothes.forEach(clothe => { %>
-          <li><%= clothe.name %></li>
+          <li>
+            <a href="/clothes/<%= clothe._id %>"> <%= clothe.name %> </a>
+        </li>
         <% }); %>
     </ul>
 
