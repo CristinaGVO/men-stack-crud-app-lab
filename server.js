@@ -7,17 +7,28 @@ const mongoose = require("mongoose");
 
 const methodOverride = require("method-override");
 const morgan = require("morgan"); 
+const path = require("path");
 
 const app = express();
+
+
 app.use(express.urlencoded({ extended: false }));
-
-// importando el modelo de clothe para crear, leer,actualizar y eliminar
-
-const Clothe = require('./models/clothes.js');
-app.use(express.urlencoded({ extended: false }));
-
 app.use(methodOverride("_method")); 
 app.use(morgan("dev")); 
+app.use(express.static(path.join(__dirname, "public")));
+app.get("/", async (req, res) => {
+    res.render("index.ejs");
+  });
+
+
+  // importando el modelo de clothe para crear, leer,actualizar y eliminar
+
+  const Clothe = require('./models/clothes.js');
+
+app.get("/", async (req, res) => {
+    res.render("index.ejs");
+  });
+
 
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {

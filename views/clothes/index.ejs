@@ -1,22 +1,36 @@
-<!-- views/fruits/index.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Clothing Index</title>
   </head>
   <body>
-    <h1>All Clothing</h1>
-        <a href="/clothes/new">Add new item</a>
-    <ul>
-        <% clothes.forEach(clothe => { %>
-          <li>
-            <a href="/clothes/<%= clothe._id %>"> <%= clothe.name %> </a>
-        </li>
-        <% }); %>
-    </ul>
+    <div class="page">
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">All Clothing</h1>
+          <p class="page-subtitle">List of all the items in your closet.</p>
+        </div>
+        <a href="/clothes/new" class="btn btn-primary">+ Add new item</a>
+      </header>
 
+      <% if (clothes.length === 0) { %>
+        <div class="card card-empty">
+          You don't have any items yet. Start by adding your first one 👕
+        </div>
+      <% } else { %>
+        <div class="card">
+          <ul class="clothes-list">
+            <% clothes.forEach(clothe => { %>
+              <li class="clothes-item">
+                <a href="/clothes/<%= clothe._id %>"><%= clothe.name %></a>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+      <% } %>
+    </div>
   </body>
 </html>

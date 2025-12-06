@@ -3,27 +3,89 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create a Clothing</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Edit Clothing</title>
   </head>
   <body>
-    <h1>Edit <%= clothe.name %></h1>
+    <div class="page">
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Edit <%= clothe.name %></h1>
+          <p class="page-subtitle">Update the information of this item</p>
+        </div>
+        <a href="/clothes" class="btn">← Back to Clothing</a>
+      </header>
 
-    <form action="/clothes/<%=clothe._id%>?_method=PUT" method="POST">
+      <div class="card">
+        <form
+          action="/clothes/<%= clothe._id %>?_method=PUT"
+          method="POST"
+          class="form"
+        >
+          <div class="form-row">
+            <label for="name">Clothing type:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value="<%= clothe.name %>"
+              required
+            />
+          </div>
 
-      <label for="name">Name of Item:</label>
-      <input type="text" name="name" value="<%= clothe.name %>" />
+          <div class="form-row form-row-inline">
+            <div>
+              <label for="size">Size:</label>
+              <input
+                type="text"
+                id="size"
+                name="size"
+                value="<%= clothe.size || '' %>"
+                placeholder="S, M, L..."
+              />
+            </div>
 
-      <label for="size">Size:</label>
-      <input type="text" name="size" id="size" required />
+            <div>
+              <label for="color">Color:</label>
+              <input
+                type="text"
+                id="color"
+                name="color"
+                value="<%= clothe.color || '' %>"
+                placeholder="Black, White..."
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="brand">Brand:</label>
+            <input
+              type="text"
+              id="brand"
+              name="brand"
+              value="<%= clothe.brand || '' %>"
+              placeholder="Nike, NafNaf..."
+            />
+          </div>
 
-      <label for="color">Color:</label>
-      <input type="text" name="color" id="color" />
+          <div class="form-row form-row-checkbox">
+            <label>
+              <input
+                type="checkbox"
+                name="inStock"
+                <% if (clothe.inStock) { %>checked<% } %>
+              />
+              In stock
+            </label>
+          </div>
 
-      <label for="inStock">InStock:</label>
-      <input type="checkbox" name="inStock" <% if (clothe.inStock) { %>checked<% } %> >
-
-      <button type="submit">Update Clothing</button>
-    </form>
-    <a href="/clothes/">Back to Clothing</a>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              Update Clothing
+            </button>
+            <a href="/clothes" class="btn">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

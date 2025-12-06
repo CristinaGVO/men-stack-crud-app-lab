@@ -1,27 +1,54 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= clothe.name %></title> 
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title><%= clothe.name %></title>
   </head>
   <body>
-    <h1><%= clothe.name %></h1> 
-    <% if (clothe.inStock) { %>
-        <p>This item is available for you!</p>
-      <% } else { %>
-        <p>This item is not available for you!</p>
-      <% } %>
+    <div class="page">
+      <header class="page-header">
+        <div>
+          <h1 class="page-title"><%= clothe.name %></h1>
+          <p class="page-subtitle">Details of this clothing item</p>
+        </div>
 
+        <a href="/clothes" class="btn">← Back to Clothing</a>
+      </header>
+
+      <div class="card">
+        <p><strong>Type:</strong> <%= clothe.name %></p>
+        <p><strong>Brand:</strong> <%= clothe.brand || '—' %></p>
+        <p><strong>Size:</strong> <%= clothe.size || '—' %></p>
+        <p><strong>Color:</strong> <%= clothe.color || '—' %></p>
+
+        <p>
+          <strong>Status:</strong>
+          <% if (clothe.inStock) { %>
+            <span class="tag tag-success">In stock</span>
+          <% } else { %>
+            <span class="tag tag-danger">Out of stock</span>
+          <% } %>
+        </p>
+
+        <div class="form-actions" style="margin-top: 1rem;">
+          <a href="/clothes/<%= clothe._id %>/edit" class="btn btn-secondary">
+            Edit
+          </a>
+
+          <form
+            action="/clothes/<%= clothe._id %>?_method=DELETE"
+            method="POST"
+            class="inline-form"
+            onsubmit="return confirm('Delete this item?');"
+          >
+            <button type="submit" class="btn btn-danger btn-small">
+              Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
-  <form action="/clothes/<%=clothe._id%>?_method=DELETE" method="POST">
-
-    <button type="submit">Delete <%= clothe.name %></button>
-  </form>
-
-  <a href="/clothes/<%= clothe._id %>/edit">Edit <%= clothe.name %></a>
-
-    <a href="/clothes/">Back to Clothing</a>
-
 </html>

@@ -1,30 +1,89 @@
-<!-- views/clothes/new.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Create a Clothing</title>
   </head>
   <body>
-    <h1>Create a New Item!</h1>
-    <form action="/clothes" method="POST">
-        <a href="/clothes/">Back to Clothing</a>
+    <div class="page">
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Create a New Item</h1>
+          <p class="page-subtitle">Add a new piece of clothing to your closet.</p>
+        </div>
 
-      <label for="name">Name of Item:</label>
-      <input type="text" name="name" id="name" required />
+        <a href="/clothes" class="btn">← Back to Clothing</a>
+      </header>
 
-      <label for="size">Size:</label>
-      <input type="text" name="size" id="size" required />
+      <div class="card">
+        <form action="/clothes" method="POST" class="form">
+          <div class="form-row">
+            <label for="name">Clothing type:</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              placeholder="T-shirt, Jeans, Dress..."
+            />
+          </div>
 
-      <label for="color">Color:</label>
-      <input type="text" name="color" id="color" />
+          <div class="form-row form-row-inline">
+            <div>
+              <label for="size">Size:</label>
+              <input
+                type="text"
+                name="size"
+                id="size"
+                required
+                placeholder="S, M, L..."
+              />
+            </div>
 
-      <label for="inStock">InStock:</label>
-      <input type="checkbox" name="inStock" id="inStock" checked />
+            <div>
+              <label for="color">Color:</label>
+              <input
+                type="text"
+                name="color"
+                id="color"
+                placeholder="Black, White..."
+              />
+            </div>
+          </div>
 
-      <button type="submit">Add Clothing</button>
-    </form>
+          <div class="form-row">
+            <label for="brand">Brand:</label>
+            <input
+              type="text"
+              name="brand"
+              id="brand"
+              placeholder="Nike, NafNaf..."
+            />
+          </div>
+
+          <div class="form-row form-row-checkbox">
+            <label for="inStock">
+              <input
+                type="checkbox"
+                name="inStock"
+                id="inStock"
+              />
+              In stock
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              Add Clothing
+            </button>
+            <a href="/clothes" class="btn">Cancel</a>
+            <a href="/" class="btn">← Back to Home</a>
+          </div>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
+
