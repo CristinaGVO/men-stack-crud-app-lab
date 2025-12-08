@@ -1,54 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <title><%= clothe.name %></title>
-  </head>
-  <body>
+    <title>
+        <%= clothe.name %>
+    </title>
+</head>
+
+<body>
     <div class="page">
-      <header class="page-header">
-        <div>
-          <h1 class="page-title"><%= clothe.name %></h1>
-          <p class="page-subtitle">Details of this clothing item</p>
+        <header class="page-header">
+            <div>
+                <h1 class="page-title">
+                    <%= clothe.name %>
+                </h1>
+                <p class="page-subtitle">Details of this clothing item</p>
+            </div>
+
+            <a href="/clothes" class="btn">← Back Clothing</a>
+        </header>
+
+        <div class="card">
+            <p><strong>Type:</strong>
+                <%= clothe.name %>
+            </p>
+            <p><strong>Brand:</strong>
+                <%= clothe.brand || '—' %>
+            </p>
+            <p><strong>Size:</strong>
+                <%= clothe.size || '—' %>
+            </p>
+            <p><strong>Color:</strong>
+                <%= clothe.color || '—' %>
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                <% if (clothe.inStock) { %>
+                    <span class="tag tag-success">In stock</span>
+                    <% } else { %>
+                        <span class="tag tag-danger">Out of stock</span>
+                        <% } %>
+            </p>
+
+            <div class="form-actions" style="margin-top: 1rem;">
+                <a href="/clothes/<%= clothe._id %>/edit" class="btn btn-secondary">
+                    Edit
+                </a>
+
+                <form action="/clothes/<%= clothe._id %>?_method=DELETE" method="POST" class="inline-form"
+                    onsubmit="return confirm('Delete this item?');">
+                    <button type="submit" class="btn btn-danger btn-small">
+                        Delete
+                    </button>
+                </form>
+            </div>
         </div>
-
-        <a href="/clothes" class="btn">← Back to Clothing</a>
-      </header>
-
-      <div class="card">
-        <p><strong>Type:</strong> <%= clothe.name %></p>
-        <p><strong>Brand:</strong> <%= clothe.brand || '—' %></p>
-        <p><strong>Size:</strong> <%= clothe.size || '—' %></p>
-        <p><strong>Color:</strong> <%= clothe.color || '—' %></p>
-
-        <p>
-          <strong>Status:</strong>
-          <% if (clothe.inStock) { %>
-            <span class="tag tag-success">In stock</span>
-          <% } else { %>
-            <span class="tag tag-danger">Out of stock</span>
-          <% } %>
-        </p>
-
-        <div class="form-actions" style="margin-top: 1rem;">
-          <a href="/clothes/<%= clothe._id %>/edit" class="btn btn-secondary">
-            Edit
-          </a>
-
-          <form
-            action="/clothes/<%= clothe._id %>?_method=DELETE"
-            method="POST"
-            class="inline-form"
-            onsubmit="return confirm('Delete this item?');"
-          >
-            <button type="submit" class="btn btn-danger btn-small">
-              Delete
-            </button>
-          </form>
-        </div>
-      </div>
     </div>
-  </body>
+</body>
+
 </html>
